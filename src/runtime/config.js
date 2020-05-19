@@ -98,7 +98,7 @@ let validateConfig = (config) => {
         config.https = null
     }
 
-    if(!isDefined(config.nodeID) || !isValidNodeID(config.nodeID)) {
+    if(!isDefined(config.nodeID)) {
         if(config.https == null) {
             console.warn('Since there is no valid "nodeID" field specified and the config has no valid client certificate specified a random nodeID will be used for this session.')
             config.nodeID = djsutil.uuid()
