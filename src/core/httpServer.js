@@ -75,6 +75,8 @@ var HTTPCoreServer = function(httpPort, coreServerOptions) {
 
     if(typeof coreServerOptions === 'object' && typeof coreServerOptions.https !== 'object') {
         var httpsOptions = this.httpsOptions = { };
+        httpsOptions.server = null;
+        httpsOptions.client = null;
     }
     else {
         var httpsOptions = this.httpsOptions = coreServerOptions.https;
