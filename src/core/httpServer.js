@@ -73,7 +73,7 @@ var HTTPCoreServer = function(httpPort, coreServerOptions) {
         var moduleInstallDirectory = coreServerOptions.moduleInstallDirectory;
     }
 
-    if(typeof coreServerOptions === 'object' && typeof coreServerOptions.https !== 'object') {
+    if((typeof coreServerOptions === 'object' && typeof coreServerOptions.https !== 'object') || coreServerOptions.https == null) {
         var httpsOptions = this.httpsOptions = { };
         httpsOptions.server = null;
         httpsOptions.client = null;
