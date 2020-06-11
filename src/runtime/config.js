@@ -40,15 +40,17 @@ let loadConfigFromFile = (configFile) => {
 
 let djsconfig = (config, configFile) => {
     validateConfig(config)
+ 
+    if(config.https != null) {
+    	fillInHTTPS(configFile, config.https)
+   	fillInHTTPS(configFile, config.https.server)
+    	fillInHTTPS(configFile, config.https.client)
+    	fillInHTTPS(configFile, config.databaseConfig.https)
     
-    fillInHTTPS(configFile, config.https)
-    fillInHTTPS(configFile, config.https.server)
-    fillInHTTPS(configFile, config.https.client)
-    fillInHTTPS(configFile, config.databaseConfig.https)
-    
-    config.databaseConfig.https = config.databaseConfig.https || config.https
-    config.https.client = config.https.client || config.https
-    config.https.server = config.https.server || config.https
+    	config.databaseConfig.https = config.databaseConfig.https || config.https
+    	config.https.client = config.https.client || config.https
+    	config.https.server = config.https.server || config.https
+    }
     config.uri = 'http://127.0.0.1:' + DEVICEJS_LOCAL_PORT
     
     return config
@@ -98,7 +100,7 @@ let validateConfig = (config) => {
         config.https = null
     }
 
-    if(!isDefined(config.nodeID) || !isValidNodeID(config.nodeID)) {
+    if(!isDefined(config.nodeID)) {
         if(config.https == null) {
             console.warn('Since there is no valid "nodeID" field specified and the config has no valid client certificate specified a random nodeID will be used for this session.')
             config.nodeID = djsutil.uuid()
