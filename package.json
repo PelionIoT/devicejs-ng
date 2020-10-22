@@ -25,7 +25,7 @@
     "jsonwebtoken": "5.0.4",
     "lru-cache": "4.0.1",
     "node-uuid": "1.4.2",
-    "npm": "3.3.0",
+    "npm": "6.14.6",
     "optimist": "0.6.1",
     "read": "1.0.7",
     "relay-core": "https://github.com/armPelionEdge/relay-core#master",
